@@ -28,18 +28,17 @@ const Dashboard = () => {
     }
 
 
-      axios
-      .get(`http://localhost:5000/user/token-user/${id}`)
-      .then((res) => setUser(res.data))
-      .catch((err) => console.log("dash err"));
+    axios
+    .get(`http://localhost:5000/user/token-user/${id}`)
+    .then((res) => setUser(res.data))
+    .catch((err) => console.log("dash err"));
      
 
     // get the post od user
     
 getAllPost()
     
-  },[post]);
-  console.log(user);
+  },[]);
   const handelChange = (e) => {
     setPostText({
       ...postTest,
@@ -56,7 +55,7 @@ getAllPost()
           title: postTest.title,
           description: postTest.description,
         })
-        .then((res) => setUser(res.data))
+        .then((res) => setPost([...post,res.data]))
         .catch((err) => console.log("Post Errro"));
 
 
@@ -88,14 +87,14 @@ getAllPost()
     console.log(error)
    } 
   }
-  console.log(post);
+
   return (
     <div className="dashboard">
      <div className="info_container">
      <div className="info">
      <h2>HY {user.username}</h2>
       <p>Your Email is {user.email}</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quam velit fuga impedit excepturi qui, deserunt harum pariatur quae iste!</p>
+      <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quam velit fuga impedit excepturi qui, deserunt harum pariatur quae iste!</p>
      </div>
 
 
