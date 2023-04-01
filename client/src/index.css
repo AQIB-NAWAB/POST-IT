@@ -1,0 +1,139 @@
+body{
+    background-color: rgba(213, 210, 210, 0.929);
+}
+.box{
+    width: 40%;
+    height: auto;
+    margin: 50px auto;
+    border: 1px solid rgb(214, 213, 213);
+    padding: 20px 30px;
+    text-align: center;
+    background-color: rgba(254, 254, 254, 0.557);
+    box-shadow: 3px 3px 1px rgb(102, 102, 102);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.box p{
+    opacity: 0.6;
+}
+.box input{
+    display: block;
+    width:80%;
+    margin:20px auto;
+    padding: 12px 5px;
+    font-size: 17px;
+
+    outline: none;
+}
+.box input::placeholder{
+    font-size: 15px;
+    padding-left: 10px  ;
+}
+
+.box button{
+    padding: 10px 10px;
+    background-color: rgb(1, 94, 255);
+    outline: none;
+    border:none ;
+    color: white;
+    letter-spacing: 1px;
+    float: right;
+    cursor: pointer;
+    border-radius: 2px;
+
+
+}
+.box button:hover{
+    box-shadow: 2px 2px 3px rgb(134, 131, 131);
+}
+.navbar{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(62, 60, 62);
+    padding: 10px 40px;
+}
+.navbar a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.navbar a::after{
+    position: absolute;
+    content: " ";
+    width: 0%;
+    height: 4px;
+    background-color: rgb(255, 255, 255);
+    bottom:-5px ;
+    left: 0;
+    transition: width 0.2s ease-out;
+
+}
+.navbar a:hover::after{
+    width: 100%;
+
+}
+
+.dashboard {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 100px;
+
+}
+.info_container{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 0px  4px;
+}
+.info{
+    width: 40%;
+}
+.info p{
+    line-height: 27px;
+}
+.add_post input{
+    display: block;
+    width:80%;
+    margin:20px auto;
+    padding: 12px 5px;
+    font-size: 17px;
+
+    outline: none;
+}
+.add_post button{
+    padding: 10px 40px;
+    background-color: rgb(1, 94, 255);
+    outline: none;
+    border:none ;
+    color: white;
+    letter-spacing: 1px;
+    float: right;
+    cursor: pointer;
+    border-radius: 2px;
+    margin: auto;
+    width:80%;
+    margin-right: 20px;
+
+}
+.show_post{
+    margin-top: 100px;
+    text-align: center ;
+}
+.box{
+    position: relative;
+}
+
+.delete_post{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(208, 23, 23);
+    color: white;
+}
