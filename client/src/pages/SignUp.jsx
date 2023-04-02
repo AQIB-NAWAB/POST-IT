@@ -23,9 +23,11 @@ const handelChange=(e)=>{
 const handelSubmit=(e)=>{
   
     e.preventDefault()
+
   const {username,email,password}=data;
    axios.post("http://localhost:5000/user/signup",data)
   .then((res)=>{
+    
     console.log(res.data)
     navigate("/login")
   })

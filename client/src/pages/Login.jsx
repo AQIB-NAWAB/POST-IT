@@ -27,6 +27,9 @@ const Login = () => {
      axios.post("http://localhost:5000/user/login",{email,password})
     .then((res)=>{
       console.log("log in")
+      if(res.status==401){
+        alert(res.data)
+      }
       window.localStorage.setItem("userId",res.data._id)
       navigate("/dashboard")
     })

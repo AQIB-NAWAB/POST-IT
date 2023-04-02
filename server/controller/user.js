@@ -37,7 +37,7 @@ const loginUser=async(req,res)=>{
 }
 
 
-// create a new user
+// Register the user
 const addUser=async(req,res)=>{
     try{
         const {username,email,password}=req.body;
@@ -57,19 +57,8 @@ const addUser=async(req,res)=>{
 }
 
 
-// get all users
-
-const getUsers=async(req,res)=>{
- try{
-    const users=await User.find({})
-    res.json(users)
 
 
- }catch(error){
-    res.send(error)
- }
-
-}
 //show the speific user
 
 const getUser=async(req,res)=>{
@@ -84,32 +73,7 @@ const getUser=async(req,res)=>{
     }
 }
 // delete the user
-const removeUser=async(req,res)=>{
-    try{
-        const id=req.params.id
-        await User.findByIdAndDelete({_id:id})
-        User.save()
-        res.json("deletd the user")
-    }catch(error){
-        res.send(error)
-    }
-}
 
-
-// update the user
-const updateUser=async(req,res)=>{
-    try{
-        const _id=req.params.id
-        
-
-        const updated_user=await User.findByIdAndUpdate(_id,req.body)
-        updated_user.save()
-res.json(updated_user)
-
-    }catch(error){
-        res.json({msg:error.message})
-    }
-}
 
 
 
@@ -123,17 +87,6 @@ res.json(updated_user)
 
 //protected
 
-const protected=async(req,res)=>{
-    try{
-        var userId= req.user_id
-        res.json(userId)
-
-    }catch(error){
-        res.json(error)
-    }
-
-
-}
 
 
 
@@ -155,4 +108,4 @@ const getUserFromToken=async(req,res)=>{
     };
 
 
-module.exports={addUser,getUsers,getUser,removeUser,updateUser,loginUser,protected,getUserFromToken}
+module.exports={addUser,getUser,loginUser,getUserFromToken}

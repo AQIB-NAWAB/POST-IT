@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -10,9 +9,24 @@ const Dashboard = () => {
     title: "",
     description: "",
   });
+  // getting the user Id from Local Storage
   const id = window.localStorage.getItem("userId");
-  const getAllPost=async()=>{
-    await axios
+
+  
+  useEffect(() => {
+    // checking the user is Logged or not
+    if (!id) {
+      alert("Plaese Login before to access");
+      navigate("/login");
+    }
+
+  // getting  the user data
+    axios
+    .get(`http://localhost:5000/user/token-user/${id}`)
+    .then((res) => setUser(res.data))
+    .catch((err) => console.log("dash err"));
+// getting the all post of user     
+    axios
     .get(`http://localhost:5000/post/show/${id}`)
     .then((res) => {
       setPost(res.data);
@@ -20,36 +34,21 @@ const Dashboard = () => {
     .catch((err) => {
       console.log(err);
     });
-  }
-  useEffect(() => {
-    if (!id) {
-      alert("Plaese Login before to access");
-      navigate("/login");
-    }
-
-
-    axios
-    .get(`http://localhost:5000/user/token-user/${id}`)
-    .then((res) => setUser(res.data))
-    .catch((err) => console.log("dash err"));
-     
-
-    // get the post od user
+  
     
-getAllPost()
     
   },[]);
+  // posting the post
   const handelChange = (e) => {
     setPostText({
       ...postTest,
       [e.target.name]: e.target.value,
     });
   };
+  // add post 
   const addPost = async(e) => {
     e.preventDefault()
     try {
-     
-
       axios
         .post(`http://localhost:5000/post/add/${id}`, {
           title: postTest.title,
@@ -57,9 +56,7 @@ getAllPost()
         })
         .then((res) => setPost([...post,res.data]))
         .catch((err) => console.log("Post Errro"));
-
-
-        // updateing the post
+       
         setPost([...post,postTest])
         setPostText({
           title:"",
@@ -70,18 +67,18 @@ getAllPost()
       console.log(error);
     }
   };
+  // delete the post
   const deletePost=async(event)=>{
    try{
     axios
         .delete(`http://localhost:5000/post/delete/${event.target.id}`)
         .then((res) => console.log(res.data))
         .catch((err) => console.log("delete Errro"));
-    // removing the post
 
-    const deleteFreePost= post.filter((single_post)=>{
+    const updated_posts= post.filter((single_post)=>{
       return event.target.id != single_post._id
     })
-    setPost(deleteFreePost)
+    setPost(updated_posts)
 
    }catch(error){
     console.log(error)
